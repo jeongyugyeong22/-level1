@@ -1,0 +1,155 @@
+(카카오 인형뽑기)
+#include <string>
+#include <vector>
+#include <stack>
+using namespace std;
+
+int solution(vector<vector<int>> board, vector<int> moves) {
+   int answer = 0;
+
+   stack<int> s;
+   int n = board.size();
+
+   for(int i:moves){
+       i -= 1;
+       for(int j = 0; j < n; j++){
+           if(board[j][i] == 0)
+               continue;
+           if(!s.empty() && s.top() == board[j][i]){
+               s.pop();
+               answer += 2;
+           }
+            else{
+                s.push(board[j][i]);
+            }   
+           board[j][i] = 0;
+           break;
+       }
+   }
+    return answer;
+}
+-------------------------------------------------------------
+스택을 이용해서 푸는 문제
+-------------------------------------------------------------
+모의고사
+#include <string>
+#include <iostream>
+#include <vector>
+#include <cmath>
+using namespace std;
+
+vector<int> s1 = {1, 2, 3, 4, 5};vector<int> s2 = {2, 1, 2, 3, 2, 4, 2, 5};vector<int> s3 = {3, 3, 1, 1, 2, 2, 4, 4, 5, 5};
+
+vector<int> solution(vector<int> answers) {
+   vector<int> answer;
+   vector<int> score(3);
+   int max_score = 0;
+   for(int i = 0; i < answers.size(); i++){
+       if(answers[i] == s1[i % 5])
+           score[0]++;
+       if(answers[i] == s2[i % 8])
+           score[1]++;
+       if(answers[i] == s3[i % 10])
+           score[2]++;
+   }
+
+   max_score = max(max(score[0],score[1]),score[2]);
+
+   for(int i = 0; i < 3; i++){
+       if(score[i] == max_score)
+           answer.push_back(i + 1);
+   }
+   return answer;
+}
+-------------------------------------------------------------
+(2016년)
+#include <string>
+#include <vector>
+using namespace std;
+
+string solution(int a, int b) {
+    string answer[] = {"THU","FRI","SAT","SUN","MON","TUE","WED"};
+    int month[] = {31,29,31,30,31,30,31,31,30,31,30,31};
+    int sum = 0;
+
+    for(int i = 0; i<a-1; i++){
+        sum += month[i];
+    }
+    sum += b;
+
+    return answer[sum%7];
+}
+-------------------------------------------------------------
+(가운데 글자 가져오기)
+#include <string>
+#include <vector>
+using namespace std;
+
+string solution(string s) {
+    string answer = "";
+    if(s.length() % 2 == 0)
+    answer += s[s.length() / 2 - 1];
+    answer += s[s.length() / 2];
+
+    return answer;
+}
+-------------------------------------------------------------
+(같은 숫자는 싫어)
+#include <vector>
+#include <iostream>
+using namespace std;
+
+vector<int> solution(vector<int> arr){
+    vector<int> answer;
+    int n;
+
+    answer.push_back(arr[0]);
+    for(int i=1; i<arr.size(); i++)
+    {
+        if(arr[i-1] != arr[i]) answer.push_back(arr[i]);
+    }
+
+return answer;
+}
+-------------------------------------------------------------
+unique 함수를 사용하면 벡터 안의 중복 숫자 저절로 제거됨
+-------------------------------------------------------------
+(나누어 떨어지는 숫자 배열)
+#include<algorithm>
+#include <string>
+#include <vector>
+using namespace std;
+
+vector<int> solution(vector<int> arr, int divisor) {
+    vector<int> answer;
+    for (int i = 0; i < arr.size(); i++)
+        if (arr[i] % divisor == 0)
+    answer.push_back(arr[i]);
+    if (answer.size() == 0)
+        answer.push_back(-1);
+    sort(answer.begin(), answer.end());
+    return answer;
+}
+-------------------------------------------------------------
+(두 정수 사이의 합)
+#include <string>
+#include <vector>
+using namespace std;
+
+long long solution(int a, int b) {
+    long long answer = 0;
+    if( a > b){
+        for(int i = b; i <= a; i++){
+            answer += i;
+        }    
+    }
+    else {
+        for(int i = a; i <= b; i++){
+            answer += i;
+        }
+    }
+
+return answer;
+}
+
+
