@@ -1,0 +1,92 @@
+제일 작은 수 제거하기
+#include <string>
+#include <vector>
+using namespace std;
+
+vector<int> solution(vector<int> arr) {
+   int min = arr[0];
+   int tmp;
+   vector<int> answer;
+
+   for(int i = 0; i < arr.size(); i++){
+       if(min > arr[i]){
+           min = arr[i];
+           tmp = i;
+       }
+   }
+   arr.erase(arr.begin() + tmp);
+   if(arr.empty())
+       arr.push_back(-1);
+   return arr;
+}
+-------------------------------------------------------------
+짝수와 홀수
+#include <string>
+#include <vector>
+using namespace std;
+string solution(int num) {
+   string answer = "";
+   if(num%2 == 0)    answer = "Even";
+   else    answer = "Odd";
+   return answer;
+}
+-------------------------------------------------------------
+최대공약수와 최소공배수
+#include <string>
+#include <vector>
+using namespace std;
+
+int gcd(int n, int m){
+   int x;
+   while(m != 0){
+       x = n % m;
+       n = m;
+       m = x;
+   }
+   return n;
+}
+
+int lcd(int n, int m){
+   return n * m / gcd(n,m);
+}
+
+vector<int> solution(int n, int m) {
+   vector<int> answer;
+   answer.push_back(gcd(n,m));
+   answer.push_back(lcd(n,m));
+   return answer;
+}
+-------------------------------------------------------------
+콜라츠 추측
+#include <string>
+#include <vector>
+using namespace std;
+
+int solution(int num) {
+    long long n = num;
+    int answer = 0;
+    while(n != 1){
+        if(answer >= 500) return -1;
+        if(n % 2 == 0) n /= 2;
+        else n = n * 3 + 1;
+        answer += 1;
+    }
+    return answer;
+}
+-------------------------------------------------------------
+평균 구하기
+#include <string>
+#include <vector>
+
+using namespace std;
+
+double solution(vector<int> arr) {
+    double answer = 0;
+    int size = arr.size();
+    
+    for(int i = 0; i < arr.size(); i++){
+        answer += arr[i];
+    }
+    answer /= arr.size();
+    return answer;
+}
